@@ -5,7 +5,8 @@ STATUS_CHOICES = [('new', 'New'), ('in_progress', 'In progress'), ('done', 'Done
 
 class Task(models.Model):
     description = models.CharField(max_length=200, null=False, blank=False, verbose_name='Description')
-    status = models.TextField(max_length=15, verbose_name='Status', default=STATUS_CHOICES[0][0],
+    detailed_desc = models.TextField(max_length=1500, null=True, blank=True, verbose_name='Detailed description')
+    status = models.CharField(max_length=15, verbose_name='Status', default=STATUS_CHOICES[0][0],
                               choices=STATUS_CHOICES)
     finish_date = models.DateField(max_length=10, null=True, blank=True, verbose_name='Finished')
 
