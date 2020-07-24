@@ -16,21 +16,21 @@ def task_create_view(request):
         description = request.POST.get('description')
         status = request.POST.get('status')
         finish_date = request.POST.get('finish_date')
-        if finish_date:
-            Task.objects.create(description=description, status=status, finish_date=finish_date)
-        else:
-            Task.objects.create(description=description, status=status)
+        detailed_desc = request.POST.get('detailed_desc')
+        if not finish_date:
+            finish_date = None
+        if not detailed_desc:
+            detailed_desc = None
+        Task.objects.create(description=description, detailed_desc=detailed_desc, status=status, finish_date=finish_date)
         return redirect(index_view)
 
 
 def delete_view(request, id):
-    context = {}
-    obj = get_object_or_404(Task, id=id)
-
+    task = get_object_or_404(Task, id=id)
     if request.method == "POST":
-        obj.delete()
+        task.delete()
         return HttpResponseRedirect("/")
-    return render(request, "delete_view.html", context)
+    return render(request, "delete_view.html", {'task': task})
 
 
 def task_view(request, pk):

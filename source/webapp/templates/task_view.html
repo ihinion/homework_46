@@ -22,9 +22,11 @@
         {% endif %}
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{ task.description }}</h5>
-            <p class="card-text text-justify">Detailed description: {{ task.detailed_desc }}</p>
+            <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
+            <p class="card-text text-justify"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
+                {{ task.detailed_desc }}{% endif %}</p>
             <a href="/" class="btn btn-primary">Back to index</a>
+            <a class="btn btn-danger" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
         </div>
     </div>
 </div>

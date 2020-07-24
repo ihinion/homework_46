@@ -35,13 +35,10 @@
                         {% endif %}</div>
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                        <p class="text-justify">Description: {{ task.description }}</p>
+                        <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                         <form class="form-inline">
                             <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                            <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
-                                {% csrf_token %}
-                                <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                            </form>
+                            <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
                         </form>
                     </div>
                 </div>
@@ -57,13 +54,10 @@
                             {% endif %}</div>
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
-                                    {% csrf_token %}
-                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                                </form>
+                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
@@ -80,13 +74,10 @@
                             {% endif %}</div>
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
-                                    {% csrf_token %}
-                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                                </form>
+                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
@@ -103,13 +94,10 @@
                             {% endif %}</div>
                         <div class="card-body">
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
                                 <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
-                                    {% csrf_token %}
-                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                                </form>
+                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
