@@ -11,102 +11,114 @@
     <title>To-Do list</title>
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-dark bg-primary mb-5">
-          <a class="navbar-brand font-weight-bold" href="/">To-Do LIST</a>
-            <a class="navbar-brand font-weight-bold" href="add/">ADD NEW</a>
-        </nav>
-        <nav>
-          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+<div class="container">
+    <nav class="navbar navbar-dark bg-primary mb-5">
+        <a class="navbar-brand font-weight-bold" href="/">To-Do LIST</a>
+        <a class="navbar-brand font-weight-bold" href="add/">ADD NEW</a>
+    </nav>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
             <a class="nav-item nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-controls="nav-new" aria-selected="false">New</a>
             <a class="nav-item nav-link" id="nav-inprogress-tab" data-toggle="tab" href="#nav-inprogress" role="tab" aria-controls="nav-inprogress" aria-selected="false">In progress</a>
             <a class="nav-item nav-link" id="nav-done-tab" data-toggle="tab" href="#nav-done" role="tab" aria-controls="nav-done" aria-selected="false">Done</a>
 
-          </div>
-        </nav>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-              {% for task in tasks %}
-                  <div class="card bg-light mb-3">
-                      <div class="card-header">Status: {{ task.get_status_display }} <br>
-                          Finished: {% if task.finish_date is not None %}
-                              {{ task.finish_date }}
-                          {% endif %}</div>
-                      <div class="card-body">
-                          <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                          <p class="text-justify">Description: {{ task.description }}</p>
-                          <form method="POST" action="{{ task.pk }}/delete/">
-                              {% csrf_token %}
-                              <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                          </form>
-                      </div>
-                  </div>
-              {% endfor %}
-          </div>
-          <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
-              {% for task in tasks %}
-                  {% if task.status == 'new' %}
-                      <div class="card bg-light mb-3">
-                          <div class="card-header">Status: {{ task.get_status_display }} <br>
-                              Finished: {% if task.finish_date is not None %}
-                                  {{ task.finish_date }}
-                              {% endif %}</div>
-                          <div class="card-body">
-                              <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                              <p class="text-justify">Description: {{ task.description }}</p>
-                              <form method="POST" action="{{ task.pk }}/delete/">
-                                  {% csrf_token %}
-                                  <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                              </form>
-                          </div>
-                  </div>
-                  {% endif %}
-              {% endfor %}
-          </div>
-          <div class="tab-pane fade" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-inprogress-tab">
-              {% for task in tasks %}
-                  {% if task.status == 'in_progress' %}
-                      <div class="card bg-light mb-3">
-                          <div class="card-header">Status: {{ task.get_status_display }} <br>
-                              Finished: {% if task.finish_date is not None %}
-                                  {{ task.finish_date }}
-                              {% endif %}</div>
-                          <div class="card-body">
-                              <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                              <p class="text-justify">Description: {{ task.description }}</p>
-                              <form method="POST" action="{{ task.pk }}/delete/">
-                                  {% csrf_token %}
-                                  <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                              </form>
-                          </div>
-                  </div>
-                  {% endif %}
-              {% endfor %}
-          </div>
-          <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
-              {% for task in tasks %}
-                  {% if task.status == 'done' %}
-                      <div class="card bg-light mb-3">
-                          <div class="card-header">Status: {{ task.get_status_display }} <br>
-                              Finished: {% if task.finish_date is not None %}
-                                  {{ task.finish_date }}
-                              {% endif %}</div>
-                          <div class="card-body">
-                              <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
-                              <p class="text-justify">Description: {{ task.description }}</p>
-                              <form method="POST" action="{{ task.pk }}/delete/">
-                                  {% csrf_token %}
-                                  <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
-                              </form>
-                          </div>
-                  </div>
-                  {% endif %}
-              {% endfor %}
-          </div>
         </div>
-        <a class="btn btn-primary btn-lg btn-block mb-4" href="add/" role="button">Add</a>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+            {% for task in tasks %}
+                <div class="card bg-light mb-3">
+                    <div class="card-header">Status: {{ task.get_status_display }} <br>
+                        Finished: {% if task.finish_date is not None %}
+                            {{ task.finish_date }}
+                        {% endif %}</div>
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
+                        <p class="text-justify">Description: {{ task.description }}</p>
+                        <form class="form-inline">
+                            <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
+                            <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
+                                {% csrf_token %}
+                                <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
+                            </form>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="nav-new" role="tabpanel" aria-labelledby="nav-new-tab">
+            {% for task in tasks %}
+                {% if task.status == 'new' %}
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Status: {{ task.get_status_display }} <br>
+                            Finished: {% if task.finish_date is not None %}
+                                {{ task.finish_date }}
+                            {% endif %}</div>
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
+                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <form class="form-inline">
+                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
+                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
+                                    {% csrf_token %}
+                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
+                                </form>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="nav-inprogress" role="tabpanel" aria-labelledby="nav-inprogress-tab">
+            {% for task in tasks %}
+                {% if task.status == 'in_progress' %}
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Status: {{ task.get_status_display }} <br>
+                            Finished: {% if task.finish_date is not None %}
+                                {{ task.finish_date }}
+                            {% endif %}</div>
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
+                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <form class="form-inline">
+                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
+                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
+                                    {% csrf_token %}
+                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
+                                </form>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="tab-pane fade" id="nav-done" role="tabpanel" aria-labelledby="nav-done-tab">
+            {% for task in tasks %}
+                {% if task.status == 'done' %}
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">Status: {{ task.get_status_display }} <br>
+                            Finished: {% if task.finish_date is not None %}
+                                {{ task.finish_date }}
+                            {% endif %}</div>
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
+                            <p class="text-justify">Description: {{ task.description }}</p>
+                            <form class="form-inline">
+                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
+                                <form class="form-inline" method="POST" action="{{ task.pk }}/delete/">
+                                    {% csrf_token %}
+                                    <button class="btn btn-primary btn-sm" type="submit" value="DELETE">Delete</button>
+                                </form>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
+    <a class="btn btn-primary btn-lg btn-block mb-4" href="add/" role="button">Add</a>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

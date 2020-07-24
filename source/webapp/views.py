@@ -31,3 +31,8 @@ def delete_view(request, id):
         obj.delete()
         return HttpResponseRedirect("/")
     return render(request, "delete_view.html", context)
+
+
+def task_view(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+    return render(request, 'task_view.html', {'task': task})
