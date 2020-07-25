@@ -13,8 +13,8 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-dark bg-primary mb-5">
-        <a class="navbar-brand font-weight-bold" href="/">To-Do LIST</a>
-        <a class="navbar-brand font-weight-bold" href="add/">ADD NEW</a>
+        <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do LIST</a>
+        <a class="navbar-brand font-weight-bold" href="{% url 'task_create' %}">ADD NEW</a>
     </nav>
     <div class="card">
         <div class="card-header">
@@ -25,8 +25,8 @@
             <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
             <p class="card-text text-justify"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
                 {{ task.detailed_desc }}{% endif %}</p>
-            <a href="/" class="btn btn-primary">Back to index</a>
-            <a class="btn btn-danger" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
+            <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
+            <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
         </div>
     </div>
 </div>

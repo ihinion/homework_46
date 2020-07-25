@@ -19,8 +19,8 @@ from webapp.views import index_view, task_create_view, delete_view, task_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index_view),
-    path('add/', task_create_view),
-    path('task/<id>/delete/', delete_view),
-    path('task/<pk>/', task_view)
+    path('', index_view, name='index'),
+    path('add/', task_create_view, name='task_create'),
+    path('task/<id>/delete/', delete_view, name='task_delete'),
+    path('task/<pk>/', task_view, name='task_view')
 ]

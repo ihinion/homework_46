@@ -13,8 +13,8 @@
 <body>
 <div class="container">
     <nav class="navbar navbar-dark bg-primary mb-5">
-        <a class="navbar-brand font-weight-bold" href="/">To-Do LIST</a>
-        <a class="navbar-brand font-weight-bold" href="add/">ADD NEW</a>
+        <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do LIST</a>
+        <a class="navbar-brand font-weight-bold" href="{% url 'task_create' %}">ADD NEW</a>
     </nav>
     <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -37,8 +37,8 @@
                         <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
                         <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                         <form class="form-inline">
-                            <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                            <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
+                            <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
+                            <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
                         </form>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
-                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
+                                <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
@@ -76,8 +76,8 @@
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
-                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
+                                <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
@@ -96,8 +96,8 @@
                             <h5 class="card-title font-weight-bold">Task #{{ task.pk }}</h5>
                             <p class="text-justify"><b>Description:</b> {{ task.description }}</p>
                             <form class="form-inline">
-                                <a class="btn btn-primary btn-sm mr-3" href="/task/{{ task.pk }}/" role="button">Details</a>
-                                <a class="btn btn-danger btn-sm" href="/task/{{ task.pk }}/delete/" role="button">Delete</a>
+                                <a class="btn btn-primary btn-sm mr-3" href="{% url 'task_view' task.pk %}" role="button">Details</a>
+                                <a class="btn btn-danger btn-sm" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
                             </form>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
             {% endfor %}
         </div>
     </div>
-    <a class="btn btn-primary btn-lg btn-block mb-4" href="add/" role="button">Add</a>
+    <a class="btn btn-primary btn-lg btn-block mb-4" href="{% url 'task_create' %}" role="button">Add</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

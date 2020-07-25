@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h2 class="my-3">Create task</h2>
-        <form action="/add/" method="post">
+        <form action="{% url 'task_create' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
             <label>Status:</label>
@@ -37,7 +37,7 @@
             <input class="form-control" type="text" name="finish_date" placeholder="YYYY-mm-dd"/>
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
-            <a class="btn btn-secondary" href="/" role="button">Home</a>
+            <a class="btn btn-secondary" href="{% url 'index' %}" role="button">Home</a>
 
         </form>
     </div>
