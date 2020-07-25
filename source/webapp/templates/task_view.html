@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>Task</title>
 </head>
 <body>
@@ -23,8 +25,8 @@
         </div>
         <div class="card-body">
             <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
-            <p class="card-text text-justify"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
-                {{ task.detailed_desc }}{% endif %}</p>
+            <p class="card-text preserve-format"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
+{{ task.detailed_desc }}{% endif %}</p>
             <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
             <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
         </div>
