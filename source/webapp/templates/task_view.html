@@ -1,37 +1,27 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Task</title>
-</head>
-<body>
-<div class="container">
-    <nav class="navbar navbar-dark bg-primary mb-5">
-        <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do LIST</a>
-        <a class="navbar-brand font-weight-bold" href="{% url 'task_create' %}">ADD NEW</a>
-    </nav>
-    <div class="card">
-        <div class="card-header">
-            <b>Task: {{ task.pk }}</b> | Finished: {% if task.finish_date is not None %} {{ task.finish_date }}
-        {% endif %}
-        </div>
-        <div class="card-body">
-            <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
-            <p class="card-text preserve-format"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
+{% block title %}Task #{{ task.pk }} {% endblock %}
+{% block nav %}
+<nav class="navbar navbar-dark bg-primary mb-5">
+    <a class="navbar-brand font-weight-bold" href="{% url 'index' %}">To-Do LIST</a>
+    <a class="navbar-brand font-weight-bold" href="{% url 'task_create' %}">ADD NEW</a>
+</nav>
+{% endblock %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <b>Task: {{ task.pk }}</b> | Finished: {% if task.finish_date is not None %} {{ task.finish_date }}
+    {% endif %}
+    </div>
+    <div class="card-body">
+        <h5 class="card-title"><b>Description:</b> {{ task.description }}</h5>
+        <p class="card-text preserve-format"><b>Detailed description:</b> {% if task.detailed_desc is not None %}
 {{ task.detailed_desc }}{% endif %}</p>
-            <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
-            <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
-        </div>
+        <a href="{% url 'index' %}" class="btn btn-primary">Back to index</a>
+        <a class="btn btn-danger" href="{% url 'task_delete' task.pk %}" role="button">Delete</a>
     </div>
 </div>
+{% endblock %}
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
